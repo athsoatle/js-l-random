@@ -7,5 +7,9 @@ console.info(data);
 console.timeEnd('rfSync');
 
 fs.readFile(filename, 'utf-8', function (err, data) {
-    console.log(data);
+    if(err) {
+        console.error(err.stack);
+    } else {
+        console.log(data);
+    }
 })
