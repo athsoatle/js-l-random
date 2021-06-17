@@ -4,17 +4,31 @@
  */
 module.exports = function (operations, callback) {
 
-    if(Array.isArray(operations) && operations.length < 1) {
+    let proms = [];
+
+    if (Array.isArray(operations) && operations.length < 1) {
         return callback(null, []);
     }
 
-    Promise.all(operations)
-        .then(function(results){
+    for (let i = 0; i < operations.length; i++) {
+        proms.push(
+            new Promise(((resolve, reject) => {
+                    operations[i]((err, res) => {
+                        if (err) reject(err);
+                        else resolve(res);
+                    });
+                })
+            )
+        );
+    }
+
+    Promise.all(proms)
+        .then(results => {
             callback(null, results);
         })
         .catch(
-            function(err){
-                return callback(err);
+            err => {
+                callback(err);
             }
         );
 };
