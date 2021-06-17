@@ -31,17 +31,17 @@ p.then((data) => {
 });
 
 p.then(data => {
-   let p2 = new Promise((resolve, reject) => {
-       setTimeout(() => {
-               data.modified = true;
-               resolve(data);
-           }, 1000
-       );
-   });
+    let p2 = new Promise((resolve, reject) => {
+        setTimeout(() => {
+                data.modified = true;
+                resolve(data);
+            }, 1000
+        );
+    });
 
-   p2.then(cData => {
-       console.log('Rdy: ', cData);
-   });
+    p2.then(cData => {
+        console.log('Rdy: ', cData);
+    });
 });
 
 p.then(data => {
@@ -53,8 +53,30 @@ p.then(data => {
             );
         });
     }
-).then(
-    cData => {
-        console.log('Rdy: ', cData);
-    }
 )
+    .then(
+        cData => {
+            console.log('Rdy: ', cData);
+        }
+    )
+    .catch(err => console.error(err))
+    .finally(() => {
+        console.log('final')
+    });
+
+const sleep = ms => {
+    return new Promise(resolve => {
+        setTimeout(() => resolve(), ms);
+    });
+};
+
+sleep(2000).then(() => console.log('2s'));
+sleep(3000).then(() => console.log('3s'));
+
+Promise.all([sleep(2000), sleep(3000)]).then(() =>
+    console.log('all promises')
+);
+
+Promise.race([sleep(2000), sleep(3000)]).then(() =>
+    console.log('race promises')
+);//race after 2, all after 3
