@@ -5,10 +5,11 @@
     <title>Place</title>
 </head>
 <body>
-    <form class="auth form" id="auth" data-form-value="123" action="/login/" >
+    <form class="auth form" id="auth" data-form-value="123" action="/login/"
+    onsubmit="submitHandler()">
         <input type="text" value="" name="login">
         <input type="password" value="" name="password">
-        <button>Enter</button>
+        <button onclick="clickHandler()">Enter</button>
     </form>
 </body>
 </html>
