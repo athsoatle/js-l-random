@@ -1,3 +1,12 @@
+let foo = {};
+Object.defineProperty(foo, 'toString', {
+    value: function () {
+        return 'bar';
+    },
+    enumerable: false,
+    configurable: true
+});
+
 let cb = setTimeout(function () {
     console.log('Preparing data');
 
@@ -33,9 +42,9 @@ p.then((data) => {
 p.then(data => {
     let p2 = new Promise((resolve, reject) => {
         setTimeout(() => {
-                data.modified = true;
-                resolve(data);
-            }, 1000
+            data.modified = true;
+            resolve(data);
+        }, 1000
         );
     });
 
@@ -45,14 +54,14 @@ p.then(data => {
 });
 
 p.then(data => {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                    data.modified = true;
-                    resolve(data);
-                }, 1000
-            );
-        });
-    }
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            data.modified = true;
+            resolve(data);
+        }, 1000
+        );
+    });
+}
 )
     .then(
         cData => {

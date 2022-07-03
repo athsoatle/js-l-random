@@ -19,12 +19,12 @@ module.exports = function (command) {
 }
 
 function add(commandArr) {
-    var name=commandArr[1];
-    var number=commandArr[2].split(',');
-    if(phoneBook.hasOwnProperty(name)){
-        phoneBook[name]=phoneBook[name].concat(number);
+    var name = commandArr[1];
+    var number = commandArr[2].split(',');
+    if (phoneBook.hasOwnProperty(name)) {
+        phoneBook[name] = phoneBook[name].concat(number);
     }
-    else phoneBook[name]= number;
+    else phoneBook[name] = number;
 }
 
 function show() {
@@ -37,7 +37,7 @@ function show() {
 }
 
 function remove(commandArr) {
-    var number=commandArr[1];
+    var number = commandArr[1];
     for (var key in phoneBook) {
         var numberPos = phoneBook[key].indexOf(number);
         if (numberPos != -1) {

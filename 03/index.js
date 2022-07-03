@@ -5,15 +5,6 @@
  * @returns {String}
  */
 module.exports = function (hours, minutes, interval) {
-    var time = {}
-    var time = {
-        hours: '13'
-        minutes: '10'
-    }
-    time.seconds = '33'
-    time seconds
-    minutes += interval;
-
     while(minutes >= 60){
         minutes -= 60;
         hours++;
