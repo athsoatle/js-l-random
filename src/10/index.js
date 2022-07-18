@@ -5,7 +5,7 @@
 module.exports = function (operations, callback) {
 
     let proms = [];
-
+    Promise.reject();
     if (Array.isArray(operations) && operations.length < 1) {
         return callback(null, []);
     }
